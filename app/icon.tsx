@@ -10,28 +10,19 @@ export default function Icon() {
         style={{
           width: '100%',
           height: '100%',
-          background: '#0071e3',
+          background: 'linear-gradient(145deg, #0071e3 0%, #34aadc 100%)',
           borderRadius: '7px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
         }}
       >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="white"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-          <line x1="16" y1="2" x2="16" y2="6" />
-          <line x1="8" y1="2" x2="8" y2="6" />
-          <line x1="3" y1="10" x2="21" y2="10" />
-        </svg>
+        {/* Small heart */}
+        <div style={{ position: 'relative', width: '16px', height: '14px', display: 'flex' }}>
+          <div style={{ position: 'absolute', top: '0px', left: '0px', width: '8px', height: '8px', background: 'white', borderRadius: '50%' }} />
+          <div style={{ position: 'absolute', top: '0px', left: '8px', width: '8px', height: '8px', background: 'white', borderRadius: '50%' }} />
+          <div style={{ position: 'absolute', top: '4px', left: '0px', width: '16px', height: '10px', background: 'white', borderRadius: '1px 1px 8px 8px' }} />
+        </div>
       </div>
     ),
     { ...size }
