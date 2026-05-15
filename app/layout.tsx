@@ -1,6 +1,14 @@
 import type { Metadata } from 'next'
+import { Nunito } from 'next/font/google'
 import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
+
+const nunito = Nunito({
+  subsets: ['latin'],
+  weight: ['400', '600', '700', '800', '900'],
+  variable: '--font-sans',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: {
@@ -17,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" suppressHydrationWarning>
-      <body className="min-h-screen bg-[#f5f5f7] antialiased">
+      <body className={`${nunito.variable} font-sans min-h-screen bg-[#f5f5f7] antialiased`}>
         {children}
         <Toaster position="top-right" richColors />
       </body>
