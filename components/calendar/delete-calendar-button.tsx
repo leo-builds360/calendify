@@ -35,7 +35,7 @@ export default function DeleteCalendarButton({ calendarId, calendarName }: Delet
     <>
       <button
         onClick={() => setOpen(true)}
-        className="flex items-center justify-center w-8 h-8 rounded-xl text-[#8e8e93] hover:bg-red-50 hover:text-red-500 border border-gray-200 bg-white transition-colors"
+        className="flex items-center justify-center w-8 h-8 rounded-xl bg-red-500 hover:bg-red-600 text-white transition-colors"
         title="Supprimer le calendrier"
       >
         <Trash2 className="w-4 h-4" />
