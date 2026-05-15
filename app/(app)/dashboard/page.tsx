@@ -5,6 +5,7 @@ import { CalendarDays, Plus, Users, Clock } from 'lucide-react'
 import CreateCalendarModal from '@/components/calendar/create-calendar-modal'
 import type { Calendar } from '@/lib/types'
 import { formatDistanceToNow } from 'date-fns'
+import { fr } from 'date-fns/locale'
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -29,7 +30,6 @@ export default async function DashboardPage() {
     .map((m) => (Array.isArray(m.calendars) ? m.calendars[0] : m.calendars))
     .filter(Boolean) as Calendar[]
 
-  // Fetch member counts per calendar
   const calendarIds = calendars.map((c) => c.id)
   const { data: memberCounts } = await supabase
     .from('calendar_members')
@@ -47,12 +47,12 @@ export default async function DashboardPage() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-[28px] font-bold text-[#1d1d1f] tracking-tight">
-            My Calendars
+            Mes calendriers
           </h1>
           <p className="text-[14px] text-[#6e6e73] mt-0.5">
             {calendars.length === 0
-              ? 'Create your first shared calendar'
-              : `${calendars.length} calendar${calendars.length !== 1 ? 's' : ''}`}
+              ? 'Créez votre premier calendrier partagé'
+              : `${calendars.length} calendrier${calendars.length > 1 ? 's' : ''}`}
           </p>
         </div>
         <CreateCalendarModal />
@@ -95,7 +95,7 @@ function CalendarCard({
           </div>
           {isOwner && (
             <span className="text-[11px] font-medium bg-[#f5f5f7] text-[#6e6e73] px-2 py-0.5 rounded-full">
-              Owner
+              Propriétaire
             </span>
           )}
         </div>
@@ -110,11 +110,11 @@ function CalendarCard({
         <div className="flex items-center gap-3 mt-3 pt-3 border-t border-gray-50">
           <div className="flex items-center gap-1 text-[12px] text-[#8e8e93]">
             <Users className="w-3.5 h-3.5" />
-            {memberCount} member{memberCount !== 1 ? 's' : ''}
+            {memberCount} membre{memberCount > 1 ? 's' : ''}
           </div>
           <div className="flex items-center gap-1 text-[12px] text-[#8e8e93]">
             <Clock className="w-3.5 h-3.5" />
-            {formatDistanceToNow(new Date(calendar.created_at), { addSuffix: true })}
+            {formatDistanceToNow(new Date(calendar.created_at), { addSuffix: true, locale: fr })}
           </div>
         </div>
       </div>
@@ -129,10 +129,10 @@ function EmptyState() {
         <CalendarDays className="w-10 h-10 text-[#8e8e93]" />
       </div>
       <h2 className="text-[20px] font-semibold text-[#1d1d1f] mb-2">
-        No calendars yet
+        Aucun calendrier
       </h2>
       <p className="text-[14px] text-[#6e6e73] mb-6 max-w-xs">
-        Create your first shared calendar and start collaborating with your team or family.
+        Créez votre premier calendrier partagé et collaborez avec votre équipe ou votre famille.
       </p>
       <CreateCalendarModal variant="empty" />
     </div>

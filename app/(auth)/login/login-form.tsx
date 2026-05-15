@@ -30,10 +30,10 @@ export default function LoginForm() {
   return (
     <>
       <h1 className="text-[22px] font-bold text-[#1d1d1f] tracking-tight mb-1">
-        Welcome back
+        Bon retour
       </h1>
       <p className="text-[14px] text-[#6e6e73] mb-6">
-        Sign in to your Calendify account
+        Connectez-vous à votre compte Calendify
       </p>
 
       {error && (
@@ -54,13 +54,13 @@ export default function LoginForm() {
             type="email"
             required
             autoComplete="email"
-            placeholder="you@example.com"
+            placeholder="vous@exemple.com"
             className="w-full h-10 px-3.5 text-[14px] bg-[#f5f5f7] border border-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0071e3] focus:bg-white transition-all placeholder:text-[#8e8e93]"
           />
         </div>
         <div>
           <label htmlFor="password" className="block text-[13px] font-medium text-[#1d1d1f] mb-1.5">
-            Password
+            Mot de passe
           </label>
           <input
             id="password"
@@ -77,17 +77,17 @@ export default function LoginForm() {
           disabled={isPending}
           className="w-full h-10 bg-[#0071e3] text-white text-[14px] font-medium rounded-xl hover:bg-[#0077ed] transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-2"
         >
-          {isPending ? 'Signing in…' : 'Sign in'}
+          {isPending ? 'Connexion…' : 'Se connecter'}
         </button>
       </form>
 
       <p className="text-center text-[13px] text-[#6e6e73] mt-5">
-        Don&apos;t have an account?{' '}
+        Pas encore de compte ?{' '}
         <Link
           href={invite ? `/signup?invite=${invite}` : '/signup'}
           className="text-[#0071e3] font-medium hover:underline"
         >
-          Sign up
+          S&apos;inscrire
         </Link>
       </p>
     </>

@@ -24,7 +24,7 @@ export default function CreateCalendarModal({ variant = 'default' }: CreateCalen
       if (result?.error) {
         toast.error(result.error)
       } else {
-        toast.success('Calendar created!')
+        toast.success('Calendrier créé !')
         setOpen(false)
         if (result?.calendarId) {
           router.push(`/calendar/${result.calendarId}`)
@@ -44,7 +44,7 @@ export default function CreateCalendarModal({ variant = 'default' }: CreateCalen
         }
       >
         <Plus className={variant === 'empty' ? 'w-4 h-4' : 'w-3.5 h-3.5'} />
-        New calendar
+        Nouveau calendrier
       </button>
 
       {open && (
@@ -55,7 +55,7 @@ export default function CreateCalendarModal({ variant = 'default' }: CreateCalen
           />
           <div className="relative bg-white rounded-3xl shadow-xl w-full max-w-md p-6 animate-fade-in">
             <div className="flex items-center justify-between mb-5">
-              <h2 className="text-[18px] font-bold text-[#1d1d1f]">New calendar</h2>
+              <h2 className="text-[18px] font-bold text-[#1d1d1f]">Nouveau calendrier</h2>
               <button
                 onClick={() => setOpen(false)}
                 className="w-7 h-7 flex items-center justify-center rounded-full bg-[#f5f5f7] text-[#6e6e73] hover:bg-gray-200 transition-colors"
@@ -67,26 +67,26 @@ export default function CreateCalendarModal({ variant = 'default' }: CreateCalen
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-[13px] font-medium text-[#1d1d1f] mb-1.5">
-                  Calendar name <span className="text-red-500">*</span>
+                  Nom du calendrier <span className="text-red-500">*</span>
                 </label>
                 <input
                   name="name"
                   type="text"
                   required
                   autoFocus
-                  placeholder="e.g. Family, Team Q2, Travel"
+                  placeholder="ex. Famille, Équipe Q2, Voyage"
                   className="w-full h-10 px-3.5 text-[14px] bg-[#f5f5f7] border border-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0071e3] focus:bg-white transition-all placeholder:text-[#8e8e93]"
                 />
               </div>
               <div>
                 <label className="block text-[13px] font-medium text-[#1d1d1f] mb-1.5">
                   Description
-                  <span className="text-[#8e8e93] font-normal ml-1">(optional)</span>
+                  <span className="text-[#8e8e93] font-normal ml-1">(optionnel)</span>
                 </label>
                 <textarea
                   name="description"
                   rows={3}
-                  placeholder="What's this calendar for?"
+                  placeholder="À quoi sert ce calendrier ?"
                   className="w-full px-3.5 py-2.5 text-[14px] bg-[#f5f5f7] border border-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0071e3] focus:bg-white transition-all resize-none placeholder:text-[#8e8e93]"
                 />
               </div>
@@ -96,14 +96,14 @@ export default function CreateCalendarModal({ variant = 'default' }: CreateCalen
                   onClick={() => setOpen(false)}
                   className="flex-1 h-10 bg-[#f5f5f7] text-[#1d1d1f] text-[14px] font-medium rounded-xl hover:bg-[#e8e8ed] transition-colors"
                 >
-                  Cancel
+                  Annuler
                 </button>
                 <button
                   type="submit"
                   disabled={isPending}
                   className="flex-1 h-10 bg-[#0071e3] text-white text-[14px] font-medium rounded-xl hover:bg-[#0077ed] transition-colors disabled:opacity-50"
                 >
-                  {isPending ? 'Creating…' : 'Create calendar'}
+                  {isPending ? 'Création…' : 'Créer le calendrier'}
                 </button>
               </div>
             </form>

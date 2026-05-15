@@ -51,7 +51,6 @@ export default function EventModal({
 
   const isEditing = !!event
 
-  // Populate form when event changes
   useEffect(() => {
     if (event) setAllDay(event.all_day)
     else setAllDay(false)
@@ -70,7 +69,7 @@ export default function EventModal({
     const endRaw = data.get('end_date') as string
 
     if (!title?.trim()) {
-      toast.error('Title is required')
+      toast.error('Le titre est requis')
       return
     }
 
@@ -82,7 +81,7 @@ export default function EventModal({
       : new Date(endRaw).toISOString()
 
     if (new Date(end_date) <= new Date(start_date) && !allDay) {
-      toast.error('End time must be after start time')
+      toast.error("L'heure de fin doit être après l'heure de début")
       return
     }
 
@@ -103,7 +102,7 @@ export default function EventModal({
       if (result?.error) {
         toast.error(result.error)
       } else {
-        toast.success(isEditing ? 'Event updated' : 'Event created')
+        toast.success(isEditing ? 'Événement modifié' : 'Événement créé')
         onClose()
       }
     })
@@ -116,7 +115,7 @@ export default function EventModal({
       if (result?.error) {
         toast.error(result.error)
       } else {
-        toast.success('Event deleted')
+        toast.success('Événement supprimé')
         onClose()
       }
     })
@@ -145,7 +144,7 @@ export default function EventModal({
         {/* Header */}
         <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-gray-100">
           <h2 className="text-[17px] font-bold text-[#1d1d1f]">
-            {isEditing ? 'Edit event' : 'New event'}
+            {isEditing ? "Modifier l'événement" : 'Nouvel événement'}
           </h2>
           <div className="flex items-center gap-2">
             {isEditing && (
@@ -176,14 +175,14 @@ export default function EventModal({
               required
               autoFocus
               defaultValue={event?.title ?? ''}
-              placeholder="Event title"
+              placeholder="Titre de l'événement"
               className="flex-1 text-[16px] font-medium text-[#1d1d1f] bg-transparent border-b border-gray-200 pb-2 focus:outline-none focus:border-[#0071e3] placeholder:text-[#c7c7cc] placeholder:font-normal"
             />
           </div>
 
           {/* All day toggle */}
           <div className="flex items-center justify-between bg-[#f5f5f7] rounded-xl px-4 py-3">
-            <span className="text-[13px] font-medium text-[#1d1d1f]">All day</span>
+            <span className="text-[13px] font-medium text-[#1d1d1f]">Toute la journée</span>
             <button
               type="button"
               onClick={() => setAllDay((v) => !v)}
@@ -205,7 +204,7 @@ export default function EventModal({
             <div className="flex-1 space-y-2">
               <div>
                 <label className="block text-[11px] font-medium text-[#8e8e93] uppercase tracking-wider mb-1">
-                  Start
+                  Début
                 </label>
                 <input
                   key={`start-${allDay}`}
@@ -218,7 +217,7 @@ export default function EventModal({
               </div>
               <div>
                 <label className="block text-[11px] font-medium text-[#8e8e93] uppercase tracking-wider mb-1">
-                  End
+                  Fin
                 </label>
                 <input
                   key={`end-${allDay}`}
@@ -239,7 +238,7 @@ export default function EventModal({
               name="description"
               rows={3}
               defaultValue={event?.description ?? ''}
-              placeholder="Add description…"
+              placeholder="Ajouter une description…"
               className="flex-1 text-[14px] text-[#1d1d1f] bg-[#f5f5f7] rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#0071e3] resize-none placeholder:text-[#c7c7cc] transition-all"
             />
           </div>
@@ -251,14 +250,14 @@ export default function EventModal({
               onClick={onClose}
               className="flex-1 h-10 bg-[#f5f5f7] text-[#1d1d1f] text-[14px] font-medium rounded-xl hover:bg-[#e8e8ed] transition-colors"
             >
-              Cancel
+              Annuler
             </button>
             <button
               type="submit"
               disabled={isPending}
               className="flex-1 h-10 bg-[#0071e3] text-white text-[14px] font-medium rounded-xl hover:bg-[#0077ed] transition-colors disabled:opacity-50"
             >
-              {isPending ? 'Saving…' : isEditing ? 'Save changes' : 'Create event'}
+              {isPending ? 'Enregistrement…' : isEditing ? 'Enregistrer' : "Créer l'événement"}
             </button>
           </div>
         </form>

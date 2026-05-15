@@ -101,7 +101,7 @@ export default async function CalendarPage({
             </div>
             {(members ?? []).length > 4 && (
               <span className="ml-2 text-[12px] text-[#6e6e73]">
-                +{(members ?? []).length - 4} more
+                +{(members ?? []).length - 4} de plus
               </span>
             )}
           </div>

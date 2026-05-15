@@ -22,11 +22,11 @@ export default function SignupForm() {
     const password = formData.get('password') as string
     const confirm = formData.get('confirm_password') as string
     if (password !== confirm) {
-      setError('Passwords do not match.')
+      setError('Les mots de passe ne correspondent pas.')
       return
     }
     if (password.length < 8) {
-      setError('Password must be at least 8 characters.')
+      setError('Le mot de passe doit contenir au moins 8 caractères.')
       return
     }
 
@@ -47,13 +47,13 @@ export default function SignupForm() {
         <div className="w-14 h-14 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
           <CheckCircle2 className="w-8 h-8 text-green-500" />
         </div>
-        <h2 className="text-[20px] font-bold text-[#1d1d1f] mb-2">Check your email</h2>
+        <h2 className="text-[20px] font-bold text-[#1d1d1f] mb-2">Vérifiez votre email</h2>
         <p className="text-[14px] text-[#6e6e73] leading-relaxed">
-          We sent a confirmation link to your email address. Click it to activate your account.
+          Nous avons envoyé un lien de confirmation à votre adresse email. Cliquez dessus pour activer votre compte.
         </p>
         {invite && (
           <p className="text-[13px] text-[#8e8e93] mt-3">
-            After confirming, you&apos;ll automatically join your shared calendar.
+            Après confirmation, vous rejoindrez automatiquement votre calendrier partagé.
           </p>
         )}
       </div>
@@ -63,10 +63,10 @@ export default function SignupForm() {
   return (
     <>
       <h1 className="text-[22px] font-bold text-[#1d1d1f] tracking-tight mb-1">
-        Create account
+        Créer un compte
       </h1>
       <p className="text-[14px] text-[#6e6e73] mb-6">
-        {invite ? 'Sign up to accept your calendar invite' : 'Get started with Calendify for free'}
+        {invite ? "Inscrivez-vous pour accepter l'invitation" : 'Commencez avec Calendify gratuitement'}
       </p>
 
       {error && (
@@ -76,12 +76,11 @@ export default function SignupForm() {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Pass invite token so auth action can embed it in the callback URL */}
         {invite && <input type="hidden" name="invite" value={invite} />}
 
         <div>
           <label htmlFor="full_name" className="block text-[13px] font-medium text-[#1d1d1f] mb-1.5">
-            Full name
+            Nom complet
           </label>
           <input
             id="full_name"
@@ -89,7 +88,7 @@ export default function SignupForm() {
             type="text"
             required
             autoComplete="name"
-            placeholder="Jane Smith"
+            placeholder="Marie Dupont"
             className="w-full h-10 px-3.5 text-[14px] bg-[#f5f5f7] border border-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0071e3] focus:bg-white transition-all placeholder:text-[#8e8e93]"
           />
         </div>
@@ -103,13 +102,13 @@ export default function SignupForm() {
             type="email"
             required
             autoComplete="email"
-            placeholder="you@example.com"
+            placeholder="vous@exemple.com"
             className="w-full h-10 px-3.5 text-[14px] bg-[#f5f5f7] border border-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0071e3] focus:bg-white transition-all placeholder:text-[#8e8e93]"
           />
         </div>
         <div>
           <label htmlFor="password" className="block text-[13px] font-medium text-[#1d1d1f] mb-1.5">
-            Password
+            Mot de passe
           </label>
           <input
             id="password"
@@ -118,13 +117,13 @@ export default function SignupForm() {
             required
             minLength={8}
             autoComplete="new-password"
-            placeholder="Min. 8 characters"
+            placeholder="Min. 8 caractères"
             className="w-full h-10 px-3.5 text-[14px] bg-[#f5f5f7] border border-transparent rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0071e3] focus:bg-white transition-all placeholder:text-[#8e8e93]"
           />
         </div>
         <div>
           <label htmlFor="confirm_password" className="block text-[13px] font-medium text-[#1d1d1f] mb-1.5">
-            Confirm password
+            Confirmer le mot de passe
           </label>
           <input
             id="confirm_password"
@@ -141,17 +140,17 @@ export default function SignupForm() {
           disabled={isPending}
           className="w-full h-10 bg-[#0071e3] text-white text-[14px] font-medium rounded-xl hover:bg-[#0077ed] transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-2"
         >
-          {isPending ? 'Creating account…' : 'Create account'}
+          {isPending ? 'Création du compte…' : 'Créer un compte'}
         </button>
       </form>
 
       <p className="text-center text-[13px] text-[#6e6e73] mt-5">
-        Already have an account?{' '}
+        Déjà un compte ?{' '}
         <Link
           href={invite ? `/login?invite=${invite}` : '/login'}
           className="text-[#0071e3] font-medium hover:underline"
         >
-          Sign in
+          Se connecter
         </Link>
       </p>
     </>

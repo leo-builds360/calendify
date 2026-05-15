@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { CalendarDays, LogOut, User } from 'lucide-react'
+import { CalendarDays, LogOut } from 'lucide-react'
 import { signOut } from '@/lib/actions/auth'
 import { getInitials, getAvatarColor } from '@/lib/utils'
 import type { Profile } from '@/lib/types'
@@ -48,7 +48,7 @@ export default function AppNavbar({ user, profile }: AppNavbarProps) {
               className="flex items-center gap-1.5 text-[13px] text-[#6e6e73] hover:text-[#1d1d1f] transition-colors px-2 py-1 rounded-lg hover:bg-gray-100"
             >
               <LogOut className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Sign out</span>
+              <span className="hidden sm:inline">Déconnexion</span>
             </button>
           </form>
         </div>

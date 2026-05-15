@@ -5,6 +5,7 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
+import frLocale from '@fullcalendar/core/locales/fr'
 import type { DateClickArg } from '@fullcalendar/interaction'
 import type { EventClickArg, EventInput, EventDropArg } from '@fullcalendar/core'
 import { updateEvent } from '@/lib/actions/events'
@@ -61,9 +62,9 @@ export default function CalendarView({ events, calendarId, currentUserId }: Cale
 
     if (result?.error) {
       info.revert()
-      toast.error('Failed to move event')
+      toast.error("Impossible de déplacer l'événement")
     } else {
-      toast.success('Event moved')
+      toast.success('Événement déplacé')
     }
   }, [])
 
@@ -72,16 +73,11 @@ export default function CalendarView({ events, calendarId, currentUserId }: Cale
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
+        locale={frLocale}
         headerToolbar={{
           left: 'prev,next today',
           center: 'title',
           right: 'dayGridMonth,timeGridWeek,timeGridDay',
-        }}
-        buttonText={{
-          today: 'Today',
-          month: 'Month',
-          week: 'Week',
-          day: 'Day',
         }}
         events={fcEvents}
         editable
@@ -95,7 +91,7 @@ export default function CalendarView({ events, calendarId, currentUserId }: Cale
         eventTimeFormat={{
           hour: 'numeric',
           minute: '2-digit',
-          meridiem: 'short',
+          meridiem: false,
         }}
       />
 

@@ -20,13 +20,13 @@ export default function LandingPage() {
               href="/login"
               className="text-[14px] text-[#6e6e73] hover:text-[#1d1d1f] transition-colors"
             >
-              Sign in
+              Se connecter
             </Link>
             <Link
               href="/signup"
               className="text-[14px] font-medium bg-[#0071e3] text-white px-4 py-1.5 rounded-full hover:bg-[#0077ed] transition-colors"
             >
-              Get started
+              Commencer
             </Link>
           </div>
         </div>
@@ -36,30 +36,29 @@ export default function LandingPage() {
       <section className="max-w-6xl mx-auto px-6 pt-24 pb-20 text-center">
         <div className="inline-flex items-center gap-1.5 bg-blue-50 text-[#0071e3] text-[13px] font-medium px-3 py-1 rounded-full mb-6">
           <Zap className="w-3 h-3" />
-          Shared calendars, reimagined
+          Calendriers partagés, réinventés
         </div>
         <h1 className="text-[56px] font-bold text-[#1d1d1f] leading-[1.07] tracking-tight mb-6 max-w-3xl mx-auto">
-          Calendar collaboration
+          La collaboration
           <br />
-          <span className="text-[#0071e3]">without the friction</span>
+          <span className="text-[#0071e3]">sans friction</span>
         </h1>
         <p className="text-[19px] text-[#6e6e73] max-w-xl mx-auto leading-relaxed mb-10">
-          Create shared calendars, invite your team or family, and stay in sync.
-          No configuration required.
+          Créez des calendriers partagés, invitez votre équipe ou votre famille, et restez synchronisés. Sans configuration.
         </p>
         <div className="flex items-center justify-center gap-4">
           <Link
             href="/signup"
             className="inline-flex items-center gap-2 bg-[#0071e3] text-white text-[15px] font-medium px-7 py-3 rounded-full hover:bg-[#0077ed] transition-all hover:shadow-lg hover:shadow-blue-200"
           >
-            Start for free
+            Commencer gratuitement
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
             href="/login"
             className="inline-flex items-center gap-2 bg-[#f5f5f7] text-[#1d1d1f] text-[15px] font-medium px-7 py-3 rounded-full hover:bg-[#e8e8ed] transition-colors"
           >
-            Sign in
+            Se connecter
           </Link>
         </div>
       </section>
@@ -76,15 +75,14 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="p-6">
-            {/* Mock calendar grid */}
             <div className="flex items-center justify-between mb-4">
-              <span className="text-lg font-semibold text-[#1d1d1f]">May 2025</span>
+              <span className="text-lg font-semibold text-[#1d1d1f]">Mai 2025</span>
               <div className="flex gap-2">
-                {['Month', 'Week', 'Day'].map((v) => (
+                {['Mois', 'Semaine', 'Jour'].map((v) => (
                   <span
                     key={v}
                     className={`text-[12px] font-medium px-3 py-1 rounded-md ${
-                      v === 'Month'
+                      v === 'Mois'
                         ? 'bg-[#0071e3] text-white'
                         : 'bg-[#f2f2f7] text-[#6e6e73]'
                     }`}
@@ -95,7 +93,7 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="grid grid-cols-7 gap-px bg-gray-100 rounded-xl overflow-hidden">
-              {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d) => (
+              {['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'].map((d) => (
                 <div key={d} className="bg-white py-2 text-center text-[11px] font-semibold text-[#8e8e93] uppercase tracking-wider">
                   {d}
                 </div>
@@ -104,14 +102,14 @@ export default function LandingPage() {
                 const day = i - 2
                 const isToday = day === 15
                 const events: Record<number, { title: string; color: string }[]> = {
-                  8: [{ title: 'Team standup', color: 'bg-blue-500' }],
-                  12: [{ title: 'Lunch with Alex', color: 'bg-green-500' }],
+                  8: [{ title: 'Réunion d\'équipe', color: 'bg-blue-500' }],
+                  12: [{ title: 'Déjeuner avec Alex', color: 'bg-green-500' }],
                   15: [
-                    { title: 'Design review', color: 'bg-blue-500' },
+                    { title: 'Revue de design', color: 'bg-blue-500' },
                     { title: 'Sprint planning', color: 'bg-purple-500' },
                   ],
-                  18: [{ title: 'All-hands meeting', color: 'bg-orange-500' }],
-                  22: [{ title: 'Product demo', color: 'bg-blue-500' }],
+                  18: [{ title: 'Réunion générale', color: 'bg-orange-500' }],
+                  22: [{ title: 'Démo produit', color: 'bg-blue-500' }],
                 }
                 return (
                   <div
@@ -151,28 +149,28 @@ export default function LandingPage() {
       <section className="max-w-6xl mx-auto px-6 pb-24">
         <div className="text-center mb-14">
           <h2 className="text-[36px] font-bold text-[#1d1d1f] tracking-tight mb-3">
-            Everything you need
+            Tout ce dont vous avez besoin
           </h2>
           <p className="text-[17px] text-[#6e6e73]">
-            Powerful features, zero complexity.
+            Des fonctionnalités puissantes, zéro complexité.
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {[
             {
               icon: Users,
-              title: 'Shared with everyone',
-              desc: 'Create calendars and invite teammates, friends, or family with a single link.',
+              title: 'Partagé avec tous',
+              desc: 'Créez des calendriers et invitez collègues, amis ou famille avec un simple lien.',
             },
             {
               icon: CalendarDays,
-              title: 'Intuitive calendar views',
-              desc: 'Month, week, and day views. Drag events to reschedule in one motion.',
+              title: 'Vues calendrier intuitives',
+              desc: 'Vues mois, semaine et jour. Glissez les événements pour les déplacer en un geste.',
             },
             {
               icon: Shield,
-              title: 'Secure by default',
-              desc: 'Row-level security ensures you only see calendars you belong to.',
+              title: 'Sécurisé par défaut',
+              desc: 'La sécurité au niveau des lignes garantit que vous ne voyez que vos calendriers.',
             },
           ].map(({ icon: Icon, title, desc }) => (
             <div
@@ -193,13 +191,13 @@ export default function LandingPage() {
       <section className="bg-[#1d1d1f] py-20">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <h2 className="text-[36px] font-bold text-white tracking-tight mb-4">
-            Ready to get started?
+            Prêt à commencer ?
           </h2>
           <p className="text-[17px] text-white/60 mb-8">
-            Free forever. No credit card required.
+            Gratuit pour toujours. Aucune carte bancaire requise.
           </p>
           <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {['Shared calendars', 'Event management', 'Invite links', 'Mobile-friendly'].map(
+            {['Calendriers partagés', 'Gestion des événements', "Liens d'invitation", 'Compatible mobile'].map(
               (f) => (
                 <div key={f} className="flex items-center gap-1.5 text-[13px] text-white/70">
                   <Check className="w-3.5 h-3.5 text-[#30d158]" />
@@ -212,7 +210,7 @@ export default function LandingPage() {
             href="/signup"
             className="inline-flex items-center gap-2 bg-white text-[#1d1d1f] text-[15px] font-semibold px-8 py-3 rounded-full hover:bg-gray-100 transition-colors"
           >
-            Create your free account
+            Créer votre compte gratuit
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -228,7 +226,7 @@ export default function LandingPage() {
             <span className="text-[13px] font-medium text-[#6e6e73]">Calendify</span>
           </div>
           <p className="text-[12px] text-[#8e8e93]">
-            © {new Date().getFullYear()} Calendify. Built with Next.js &amp; Supabase.
+            © {new Date().getFullYear()} Calendify. Construit avec Next.js &amp; Supabase.
           </p>
         </div>
       </footer>

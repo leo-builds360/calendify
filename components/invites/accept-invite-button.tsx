@@ -21,7 +21,7 @@ export default function AcceptInviteButton({ token, calendarId }: AcceptInviteBu
       if (result?.error) {
         toast.error(result.error)
       } else {
-        toast.success('Joined calendar!')
+        toast.success('Calendrier rejoint !')
         router.push(`/calendar/${calendarId}`)
       }
     })
@@ -34,7 +34,7 @@ export default function AcceptInviteButton({ token, calendarId }: AcceptInviteBu
       className="w-full h-10 flex items-center justify-center gap-2 bg-[#0071e3] text-white text-[14px] font-medium rounded-xl hover:bg-[#0077ed] transition-colors disabled:opacity-50"
     >
       <CalendarDays className="w-4 h-4" />
-      {isPending ? 'Joining…' : 'Join calendar'}
+      {isPending ? 'Connexion…' : 'Rejoindre le calendrier'}
     </button>
   )
 }
