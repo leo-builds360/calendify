@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { CalendarDays, Users, Zap, Shield, ArrowRight, Check } from 'lucide-react'
+import { CalendarDays, Users, Heart, Shield, ArrowRight, Check } from 'lucide-react'
 
 export default function LandingPage() {
   return (
@@ -35,23 +35,23 @@ export default function LandingPage() {
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-6 pt-24 pb-20 text-center">
         <div className="inline-flex items-center gap-1.5 bg-blue-50 text-[#0071e3] text-[13px] font-medium px-3 py-1 rounded-full mb-6">
-          <Zap className="w-3 h-3" />
-          Calendriers partagés, réinventés
+          <Heart className="w-3 h-3" />
+          Pour la famille et les proches
         </div>
         <h1 className="text-[56px] font-bold text-[#1d1d1f] leading-[1.07] tracking-tight mb-6 max-w-3xl mx-auto">
-          La collaboration
+          Le calendrier partagé
           <br />
-          <span className="text-[#0071e3]">sans friction</span>
+          <span className="text-[#0071e3]">de toute la famille</span>
         </h1>
         <p className="text-[19px] text-[#6e6e73] max-w-xl mx-auto leading-relaxed mb-10">
-          Créez des calendriers partagés, invitez votre équipe ou votre famille, et restez synchronisés. Sans configuration.
+          Créez un calendrier commun avec vos proches, partagez vos événements et restez tous synchronisés — en deux clics.
         </p>
         <div className="flex items-center justify-center gap-4">
           <Link
             href="/signup"
             className="inline-flex items-center gap-2 bg-[#0071e3] text-white text-[15px] font-medium px-7 py-3 rounded-full hover:bg-[#0077ed] transition-all hover:shadow-lg hover:shadow-blue-200"
           >
-            Commencer gratuitement
+            Créer mon calendrier
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
@@ -102,14 +102,14 @@ export default function LandingPage() {
                 const day = i - 2
                 const isToday = day === 15
                 const events: Record<number, { title: string; color: string }[]> = {
-                  8: [{ title: 'Réunion d\'équipe', color: 'bg-blue-500' }],
-                  12: [{ title: 'Déjeuner avec Alex', color: 'bg-green-500' }],
+                  8: [{ title: 'Repas chez mamie', color: 'bg-orange-500' }],
+                  12: [{ title: 'Ciné avec Paul', color: 'bg-green-500' }],
                   15: [
-                    { title: 'Revue de design', color: 'bg-blue-500' },
-                    { title: 'Sprint planning', color: 'bg-purple-500' },
+                    { title: 'Anniversaire Léa', color: 'bg-pink-500' },
+                    { title: 'Piscine enfants', color: 'bg-blue-500' },
                   ],
-                  18: [{ title: 'Réunion générale', color: 'bg-orange-500' }],
-                  22: [{ title: 'Démo produit', color: 'bg-blue-500' }],
+                  18: [{ title: 'Réunion parents', color: 'bg-purple-500' }],
+                  22: [{ title: 'Barbecue famille', color: 'bg-orange-400' }],
                 }
                 return (
                   <div
@@ -149,28 +149,28 @@ export default function LandingPage() {
       <section className="max-w-6xl mx-auto px-6 pb-24">
         <div className="text-center mb-14">
           <h2 className="text-[36px] font-bold text-[#1d1d1f] tracking-tight mb-3">
-            Tout ce dont vous avez besoin
+            Simple, pour tout le monde
           </h2>
           <p className="text-[17px] text-[#6e6e73]">
-            Des fonctionnalités puissantes, zéro complexité.
+            Pas besoin d&apos;être geek pour s&apos;en servir.
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {[
             {
               icon: Users,
-              title: 'Partagé avec tous',
-              desc: 'Créez des calendriers et invitez collègues, amis ou famille avec un simple lien.',
+              title: 'Invitez vos proches',
+              desc: 'Partagez un simple lien et vos proches rejoignent le calendrier en un clic, depuis leur téléphone ou leur ordinateur.',
             },
             {
               icon: CalendarDays,
-              title: 'Vues calendrier intuitives',
-              desc: 'Vues mois, semaine et jour. Glissez les événements pour les déplacer en un geste.',
+              title: 'Tout le monde est à jour',
+              desc: 'Ajoutez un événement et toute la famille le voit instantanément. Fini les oublis et les malentendus.',
             },
             {
               icon: Shield,
-              title: 'Sécurisé par défaut',
-              desc: 'La sécurité au niveau des lignes garantit que vous ne voyez que vos calendriers.',
+              title: 'Privé et sécurisé',
+              desc: 'Votre calendrier est privé. Seules les personnes que vous invitez peuvent le consulter.',
             },
           ].map(({ icon: Icon, title, desc }) => (
             <div
@@ -191,13 +191,13 @@ export default function LandingPage() {
       <section className="bg-[#1d1d1f] py-20">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <h2 className="text-[36px] font-bold text-white tracking-tight mb-4">
-            Prêt à commencer ?
+            Prêt à vous organiser ensemble ?
           </h2>
           <p className="text-[17px] text-white/60 mb-8">
-            Gratuit pour toujours. Aucune carte bancaire requise.
+            Totalement gratuit, pour toujours.
           </p>
           <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {['Calendriers partagés', 'Gestion des événements', "Liens d'invitation", 'Compatible mobile'].map(
+            {['Calendrier partagé', 'Événements illimités', 'Invitations par lien', 'Accessible sur mobile'].map(
               (f) => (
                 <div key={f} className="flex items-center gap-1.5 text-[13px] text-white/70">
                   <Check className="w-3.5 h-3.5 text-[#30d158]" />
@@ -210,7 +210,7 @@ export default function LandingPage() {
             href="/signup"
             className="inline-flex items-center gap-2 bg-white text-[#1d1d1f] text-[15px] font-semibold px-8 py-3 rounded-full hover:bg-gray-100 transition-colors"
           >
-            Créer votre compte gratuit
+            Créer mon calendrier familial
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -226,7 +226,7 @@ export default function LandingPage() {
             <span className="text-[13px] font-medium text-[#6e6e73]">Calendify</span>
           </div>
           <p className="text-[12px] text-[#8e8e93]">
-            © {new Date().getFullYear()} Calendify. Construit avec Next.js &amp; Supabase.
+            © {new Date().getFullYear()} Calendify. Fait avec ❤️ pour les familles.
           </p>
         </div>
       </footer>

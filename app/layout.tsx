@@ -4,10 +4,10 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Calendify – Calendriers partagés',
+    default: 'Calendify – Le calendrier de toute la famille',
     template: '%s | Calendify',
   },
-  description: 'Une belle application de calendrier partagé pour équipes et familles.',
+  description: 'Organisez-vous en famille ou entre proches avec un calendrier partagé simple et gratuit.',
 }
 
 export default function RootLayout({
