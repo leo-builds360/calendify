@@ -5,6 +5,7 @@ import { ChevronLeft, Users } from 'lucide-react'
 import InviteModal from '@/components/invites/invite-modal'
 import MemberAvatar from '@/components/member-avatar'
 import CalendarDynamic from '@/components/calendar/calendar-dynamic'
+import DeleteCalendarButton from '@/components/calendar/delete-calendar-button'
 import type { CalendarEvent } from '@/lib/types'
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
@@ -112,6 +113,9 @@ export default async function CalendarPage({
           </div>
 
           <InviteModal calendarId={id} calendarName={calendar.name} />
+          {isOwner && (
+            <DeleteCalendarButton calendarId={id} calendarName={calendar.name} />
+          )}
         </div>
       </div>
 
