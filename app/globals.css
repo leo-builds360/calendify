@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 8%;
+
+    --primary: 211 100% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 220 14% 96%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 211 100% 45%;
+
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* FullCalendar – Apple-inspired overrides */
+.fc {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.fc .fc-toolbar.fc-header-toolbar {
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.fc .fc-toolbar-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1d1d1f;
+  letter-spacing: -0.02em;
+}
+
+.fc .fc-button {
+  background-color: #f2f2f7 !important;
+  border: none !important;
+  color: #1c1c1e !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+  padding: 5px 12px !important;
+  font-size: 0.875rem !important;
+  box-shadow: none !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  transition: background-color 0.15s ease !important;
+}
+
+.fc .fc-button:hover:not(:disabled) {
+  background-color: #e5e5ea !important;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active,
+.fc .fc-button-primary:not(:disabled):active {
+  background-color: #0071e3 !important;
+  color: #fff !important;
+}
+
+.fc .fc-button-group .fc-button {
+  border-radius: 0 !important;
+}
+
+.fc .fc-button-group .fc-button:first-child {
+  border-radius: 8px 0 0 8px !important;
+}
+
+.fc .fc-button-group .fc-button:last-child {
+  border-radius: 0 8px 8px 0 !important;
+}
+
+.fc th {
+  border: none !important;
+  padding: 8px 0 !important;
+}
+
+.fc .fc-col-header-cell-cushion {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #8e8e93;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.fc td {
+  border-color: #f2f2f7 !important;
+}
+
+.fc .fc-scrollgrid {
+  border-color: #e5e5ea !important;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.fc .fc-scrollgrid-section > td {
+  border: none !important;
+}
+
+.fc .fc-daygrid-day-number {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: #1c1c1e;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background-color 0.1s;
+}
+
+.fc .fc-day-today .fc-daygrid-day-number {
+  background-color: #0071e3;
+  color: #fff;
+  font-weight: 600;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 4px 8px;
+  padding: 0;
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: rgba(0, 113, 227, 0.04) !important;
+}
+
+.fc .fc-event {
+  border: none !important;
+  border-radius: 5px !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  padding: 1px 5px !important;
+  cursor: pointer !important;
+  transition: opacity 0.1s !important;
+}
+
+.fc .fc-event:hover {
+  opacity: 0.85 !important;
+}
+
+.fc .fc-event-main {
+  padding: 1px 0;
+}
+
+.fc .fc-timegrid-event {
+  border-radius: 6px !important;
+  padding: 2px 6px !important;
+}
+
+.fc .fc-timegrid-slot {
+  height: 40px;
+}
+
+.fc .fc-timegrid-slot-label-cushion {
+  font-size: 0.6875rem;
+  color: #8e8e93;
+}
+
+.fc .fc-highlight {
+  background-color: rgba(0, 113, 227, 0.08) !important;
+  border-radius: 6px;
+}
+
+.fc .fc-daygrid-more-link {
+  font-size: 0.75rem;
+  color: #0071e3;
+  font-weight: 500;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d2d2d7;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8e8e93;
+}
