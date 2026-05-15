@@ -1,15 +1,16 @@
 'use server'
 
-import { createClient } from '@/lib/supabase/server'
+import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 export async function createCalendar(formData: FormData) {
   const supabase = await createClient()
+  const service = createServiceClient()
+
   const {
     data: { user },
   } = await supabase.auth.getUser()
-
   if (!user) redirect('/login')
 
   const name = formData.get('name') as string
@@ -17,7 +18,7 @@ export async function createCalendar(formData: FormData) {
 
   if (!name?.trim()) return { error: 'Calendar name is required' }
 
-  const { data: calendar, error: calendarError } = await supabase
+  const { data: calendar, error: calendarError } = await service
     .from('calendars')
     .insert({ name: name.trim(), description: description?.trim() || null, owner_id: user.id })
     .select()
@@ -25,8 +26,7 @@ export async function createCalendar(formData: FormData) {
 
   if (calendarError) return { error: calendarError.message }
 
-  // Add creator as member
-  const { error: memberError } = await supabase
+  const { error: memberError } = await service
     .from('calendar_members')
     .insert({ calendar_id: calendar.id, user_id: user.id })
 
@@ -36,23 +36,29 @@ export async function createCalendar(formData: FormData) {
   return { success: true, calendarId: calendar.id }
 }
 
-export async function updateCalendar(
-  calendarId: string,
-  formData: FormData
-) {
+export async function updateCalendar(calendarId: string, formData: FormData) {
   const supabase = await createClient()
+  const service = createServiceClient()
+
   const {
     data: { user },
   } = await supabase.auth.getUser()
-
   if (!user) redirect('/login')
+
+  // Verify membership
+  const { data: member } = await service
+    .from('calendar_members')
+    .select('id')
+    .eq('calendar_id', calendarId)
+    .eq('user_id', user.id)
+    .single()
+  if (!member) return { error: 'Not a member of this calendar' }
 
   const name = formData.get('name') as string
   const description = formData.get('description') as string
-
   if (!name?.trim()) return { error: 'Calendar name is required' }
 
-  const { error } = await supabase
+  const { error } = await service
     .from('calendars')
     .update({ name: name.trim(), description: description?.trim() || null })
     .eq('id', calendarId)
@@ -66,18 +72,22 @@ export async function updateCalendar(
 
 export async function deleteCalendar(calendarId: string) {
   const supabase = await createClient()
+  const service = createServiceClient()
+
   const {
     data: { user },
   } = await supabase.auth.getUser()
-
   if (!user) redirect('/login')
 
-  const { error } = await supabase
+  // Only owner can delete
+  const { data: calendar } = await service
     .from('calendars')
-    .delete()
+    .select('owner_id')
     .eq('id', calendarId)
-    .eq('owner_id', user.id)
+    .single()
+  if (!calendar || calendar.owner_id !== user.id) return { error: 'Not authorized' }
 
+  const { error } = await service.from('calendars').delete().eq('id', calendarId)
   if (error) return { error: error.message }
 
   revalidatePath('/dashboard')
@@ -86,13 +96,14 @@ export async function deleteCalendar(calendarId: string) {
 
 export async function leaveCalendar(calendarId: string) {
   const supabase = await createClient()
+  const service = createServiceClient()
+
   const {
     data: { user },
   } = await supabase.auth.getUser()
-
   if (!user) redirect('/login')
 
-  const { error } = await supabase
+  const { error } = await service
     .from('calendar_members')
     .delete()
     .eq('calendar_id', calendarId)

@@ -6,21 +6,31 @@ import { redirect } from 'next/navigation'
 
 export async function createInvite(calendarId: string) {
   const supabase = await createClient()
+  const service = createServiceClient()
+
   const {
     data: { user },
   } = await supabase.auth.getUser()
-
   if (!user) redirect('/login')
 
-  // Invalidate any previous unused invites for this calendar by this user
-  await supabase
+  // Verify membership
+  const { data: member } = await service
+    .from('calendar_members')
+    .select('id')
+    .eq('calendar_id', calendarId)
+    .eq('user_id', user.id)
+    .single()
+  if (!member) return { error: 'Not a member of this calendar' }
+
+  // Invalidate previous unused invites from this user
+  await service
     .from('calendar_invites')
     .update({ used: true })
     .eq('calendar_id', calendarId)
     .eq('created_by', user.id)
     .eq('used', false)
 
-  const { data, error } = await supabase
+  const { data, error } = await service
     .from('calendar_invites')
     .insert({ calendar_id: calendarId, created_by: user.id })
     .select('token')
@@ -33,14 +43,12 @@ export async function createInvite(calendarId: string) {
 
 export async function acceptInvite(token: string) {
   const supabase = await createClient()
+  const service = createServiceClient()
+
   const {
     data: { user },
   } = await supabase.auth.getUser()
-
   if (!user) redirect(`/login?invite=${token}`)
-
-  // Use service client to bypass RLS for invite lookup and membership insert
-  const service = createServiceClient()
 
   const { data: invite, error: inviteError } = await service
     .from('calendar_invites')
@@ -71,11 +79,7 @@ export async function acceptInvite(token: string) {
     if (memberError) return { error: memberError.message }
   }
 
-  // Mark invite as used
-  await service
-    .from('calendar_invites')
-    .update({ used: true })
-    .eq('id', invite.id)
+  await service.from('calendar_invites').update({ used: true }).eq('id', invite.id)
 
   revalidatePath('/dashboard')
   revalidatePath(`/calendar/${invite.calendar_id}`)
