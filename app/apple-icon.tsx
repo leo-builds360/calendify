@@ -20,7 +20,7 @@ export default function AppleIcon() {
         <div
           style={{
             width: '120px',
-            height: '112px',
+            height: '110px',
             background: 'white',
             borderRadius: '18px',
             display: 'flex',
@@ -28,32 +28,39 @@ export default function AppleIcon() {
             overflow: 'hidden',
           }}
         >
-          {/* Top blue bar */}
+          {/* Blue top bar */}
           <div
             style={{
               background: '#0071e3',
-              height: '34px',
+              height: '32px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '10px',
+              gap: '8px',
             }}
           >
-            <div style={{ width: '8px', height: '8px', background: 'white', borderRadius: '4px' }} />
-            <div style={{ width: '8px', height: '8px', background: 'white', borderRadius: '4px' }} />
-            <div style={{ width: '8px', height: '8px', background: 'white', borderRadius: '4px' }} />
+            <div style={{ width: '6px', height: '12px', background: 'rgba(255,255,255,0.8)', borderRadius: '3px' }} />
+            <div style={{ width: '6px', height: '12px', background: 'rgba(255,255,255,0.8)', borderRadius: '3px' }} />
+            <div style={{ width: '6px', height: '12px', background: 'rgba(255,255,255,0.8)', borderRadius: '3px' }} />
           </div>
-          {/* Body with heart emoji */}
+
+          {/* Body — red rounded square as heart symbol */}
           <div
             style={{
               flex: 1,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '46px',
             }}
           >
-            ❤️
+            <div
+              style={{
+                width: '50px',
+                height: '44px',
+                background: '#ff375f',
+                borderRadius: '50% 50% 46% 46%',
+              }}
+            />
           </div>
         </div>
       </div>

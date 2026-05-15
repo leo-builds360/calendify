@@ -15,10 +15,16 @@ export default function Icon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: '18px',
         }}
       >
-        ❤️
+        <div
+          style={{
+            width: '16px',
+            height: '14px',
+            background: 'white',
+            borderRadius: '50% 50% 46% 46%',
+          }}
+        />
       </div>
     ),
     { ...size }
