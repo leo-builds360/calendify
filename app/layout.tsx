@@ -16,6 +16,15 @@ export const metadata: Metadata = {
     template: '%s | Calendify',
   },
   description: 'Organisez-vous en famille ou entre proches avec un calendrier partagé simple et gratuit.',
+  manifest: '/manifest.webmanifest',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Calendify',
+  },
+  formatDetection: {
+    telephone: false,
+  },
 }
 
 export default function RootLayout({
