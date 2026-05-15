@@ -34,6 +34,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" suppressHydrationWarning>
+      <head>
+        <link rel="apple-touch-icon" href="/api/pwa-icon" />
+      </head>
       <body className={`${nunito.variable} font-sans min-h-screen bg-[#f5f5f7] antialiased`}>
         {children}
         <Toaster position="top-right" richColors />
