@@ -8,9 +8,9 @@ export default function AppleIcon() {
     (
       <div
         style={{
-          width: '100%',
-          height: '100%',
-          background: 'linear-gradient(145deg, #0071e3 0%, #34aadc 100%)',
+          width: '180px',
+          height: '180px',
+          background: 'linear-gradient(145deg, #0071e3, #34aadc)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -19,91 +19,41 @@ export default function AppleIcon() {
         {/* Calendar card */}
         <div
           style={{
-            width: '114px',
-            height: '108px',
+            width: '120px',
+            height: '112px',
             background: 'white',
-            borderRadius: '20px',
+            borderRadius: '18px',
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
           }}
         >
-          {/* Calendar top bar */}
+          {/* Top blue bar */}
           <div
             style={{
               background: '#0071e3',
-              height: '32px',
+              height: '34px',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'space-between',
-              paddingLeft: '14px',
-              paddingRight: '14px',
+              justifyContent: 'center',
+              gap: '10px',
             }}
           >
-            {/* Binding rings */}
-            {[0, 1, 2].map((i) => (
-              <div
-                key={i}
-                style={{
-                  width: '8px',
-                  height: '14px',
-                  background: 'white',
-                  borderRadius: '4px',
-                  opacity: 0.9,
-                }}
-              />
-            ))}
+            <div style={{ width: '8px', height: '8px', background: 'white', borderRadius: '4px' }} />
+            <div style={{ width: '8px', height: '8px', background: 'white', borderRadius: '4px' }} />
+            <div style={{ width: '8px', height: '8px', background: 'white', borderRadius: '4px' }} />
           </div>
-
-          {/* Calendar body with heart */}
+          {/* Body with heart emoji */}
           <div
             style={{
               flex: 1,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              fontSize: '46px',
             }}
           >
-            {/* Heart shape using two overlapping elements */}
-            <div style={{ position: 'relative', width: '52px', height: '46px', display: 'flex' }}>
-              {/* Left circle of heart */}
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '0px',
-                  left: '0px',
-                  width: '26px',
-                  height: '26px',
-                  background: '#ff375f',
-                  borderRadius: '50%',
-                }}
-              />
-              {/* Right circle of heart */}
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '0px',
-                  left: '26px',
-                  width: '26px',
-                  height: '26px',
-                  background: '#ff375f',
-                  borderRadius: '50%',
-                }}
-              />
-              {/* Bottom triangle of heart */}
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '14px',
-                  left: '0px',
-                  width: '52px',
-                  height: '32px',
-                  background: '#ff375f',
-                  borderRadius: '2px 2px 24px 24px',
-                }}
-              />
-            </div>
+            ❤️
           </div>
         </div>
       </div>

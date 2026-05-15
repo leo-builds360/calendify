@@ -21,9 +21,13 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: 'default',
     title: 'Calendify',
+    startupImage: '/apple-icon',
   },
   formatDetection: {
     telephone: false,
+  },
+  icons: {
+    apple: '/apple-icon',
   },
 }
 

@@ -8,21 +8,17 @@ export default function Icon() {
     (
       <div
         style={{
-          width: '100%',
-          height: '100%',
-          background: 'linear-gradient(145deg, #0071e3 0%, #34aadc 100%)',
+          width: '32px',
+          height: '32px',
+          background: 'linear-gradient(145deg, #0071e3, #34aadc)',
           borderRadius: '7px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          fontSize: '18px',
         }}
       >
-        {/* Small heart */}
-        <div style={{ position: 'relative', width: '16px', height: '14px', display: 'flex' }}>
-          <div style={{ position: 'absolute', top: '0px', left: '0px', width: '8px', height: '8px', background: 'white', borderRadius: '50%' }} />
-          <div style={{ position: 'absolute', top: '0px', left: '8px', width: '8px', height: '8px', background: 'white', borderRadius: '50%' }} />
-          <div style={{ position: 'absolute', top: '4px', left: '0px', width: '16px', height: '10px', background: 'white', borderRadius: '1px 1px 8px 8px' }} />
-        </div>
+        ❤️
       </div>
     ),
     { ...size }
