@@ -11,9 +11,16 @@ export async function signUp(formData: FormData) {
   const fullName = formData.get('full_name') as string
   const invite = formData.get('invite') as string | null
 
+  const baseUrl =
+    process.env.NEXT_PUBLIC_APP_URL && process.env.NEXT_PUBLIC_APP_URL !== 'http://localhost:3000'
+      ? process.env.NEXT_PUBLIC_APP_URL
+      : process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : 'http://localhost:3000'
+
   const callbackUrl = invite
-    ? `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback?invite=${invite}`
-    : `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`
+    ? `${baseUrl}/auth/callback?invite=${invite}`
+    : `${baseUrl}/auth/callback`
 
   const { error } = await supabase.auth.signUp({
     email,
