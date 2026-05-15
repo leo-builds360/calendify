@@ -132,11 +132,18 @@ export async function sendInviteEmail(calendarId: string, email: string) {
     return { error: inviteResult?.error ?? 'Could not generate invite link' }
   }
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'
+  const appUrl =
+    process.env.NEXT_PUBLIC_APP_URL && process.env.NEXT_PUBLIC_APP_URL !== 'http://localhost:3000'
+      ? process.env.NEXT_PUBLIC_APP_URL
+      : process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : 'http://localhost:3000'
   const inviteLink = `${appUrl}/invite/${inviteResult.token}`
 
+  const fromEmail = process.env.RESEND_FROM_EMAIL ?? 'onboarding@resend.dev'
+
   const { error } = await resend.emails.send({
-    from: 'Calendify <onboarding@resend.dev>',
+    from: `Calendify <${fromEmail}>`,
     to: email,
     subject: `You're invited to join "${calendar.name}" on Calendify`,
     html: `
@@ -156,7 +163,15 @@ export async function sendInviteEmail(calendarId: string, email: string) {
     `,
   })
 
-  if (error) return { error: error.message }
+  if (error) {
+    if (error.message.includes('rate') || error.message.includes('limit')) {
+      return { error: 'Limite d\'envoi atteinte. Réessaie dans quelques minutes.' }
+    }
+    if (error.message.includes('domain') || error.message.includes('verified') || error.message.includes('testing')) {
+      return { error: 'Domaine non vérifié sur Resend. Partage le lien directement en attendant.' }
+    }
+    return { error: error.message }
+  }
 
   return { success: true }
 }
